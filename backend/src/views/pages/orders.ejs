@@ -1,0 +1,103 @@
+<%- include("../partials/navbar.ejs") %>
+
+<style>
+    :root {
+      --teal-light: bisque;
+      --teal-main: #008080;
+      --yellow-main: #ffcc00;
+      --white: #ffffff;
+    }
+
+    body {
+      background-color: var(--teal-light);
+      color: var(--teal-main);
+      font-family: 'Segoe UI', sans-serif;
+    }
+    .form-section {
+      padding: 50px 0;
+    }
+
+    .form-card {
+      background-color: var(--white);
+      border-radius: 12px;
+      padding: 30px;
+      box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    }
+
+    .btn-teal {
+      background-color: var(--teal-main);
+      color: var(--white);
+    }
+
+    .btn-teal:hover {
+      background-color: #006666;
+    }
+
+    input:focus, textarea:focus, select:focus {
+        border-color: #008080 !important;        /* Teal border */
+        box-shadow: 0 0 0 0.25rem rgba(0, 128, 128, 0.25) !important; /* Teal shadow */
+        outline: none !important;
+      }
+  </style>
+
+<section class="form-section">
+    <div class="container">
+      <h2 class="text-center mb-4">Place Your Order</h2>
+      <div class="form-card mx-auto" style="max-width: 600px;">
+        <form id="orderForm">
+          <div class="mb-3">
+            <label for="name" class="form-label">Full Name</label>
+            <input type="text" class="form-control" id="name" placeholder="Enter your name" required />
+          </div>
+          <div class="mb-3">
+            <label for="phone" class="form-label">Phone Number</label>
+            <input type="tel" class="form-control" id="phone" placeholder="Enter your phone number" required />
+          </div>
+          <div class="mb-3">
+            <label for="address" class="form-label">Address</label>
+            <textarea class="form-control" id="address" rows="3" placeholder="Your full address here..." required></textarea>
+          </div>
+          <div class="mb-3">
+            <label for="landmark" class="form-label">Nearest Landmark</label>
+            <input type="text" class="form-control" id="landmark" placeholder="e.g. Near City Mall" />
+          </div>
+          <div class="mb-3">
+            <label for="location" class="form-label">Live Location (lat, lng)</label>
+            <input type="text" class="form-control" id="location" placeholder="Click 'Get Location'" readonly />
+            <button 
+              type="button" 
+              onclick="getLocation()" 
+              style="margin-top: 8px; background-color: #008080; color: white; border: none; padding: 6px 16px; border-radius: 5px; font-weight: 500;"
+            >
+              Get Location
+            </button>
+          </div>          
+          <button type="submit" class="btn btn-teal w-100">Submit Order</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+
+  <script>
+    function getLocation() {
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function (position) {
+          const lat = position.coords.latitude;
+          const lng = position.coords.longitude;
+          document.getElementById("location").value = `${lat.toFixed(6)}, ${lng.toFixed(6)}`;
+        }, function () {
+          alert("Unable to retrieve your location.");
+        });
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+
+    document.getElementById("orderForm").addEventListener("submit", function (e) {
+      e.preventDefault();
+      alert("Order Submitted Successfully!");
+    });
+  </script>
+
+  <%- include("../partials/footer.ejs") %>

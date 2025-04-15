@@ -1,6 +1,142 @@
 <%- include("../partials/navbar.ejs") %>
-  
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
 
-  
+<style>
+  .hero-section {
+    height: 100vh;
+    background: linear-gradient(135deg, #d4f5f5, #c0f0f0); /* Soft teal */
+    color: #fff;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+
+  /* Background glowing blob */
+  .blur-blob {
+    position: absolute;
+    top: -100px;
+    left: -100px;
+    width: 300px;
+    height: 300px;
+    background: rgba(0, 128, 128, 0.25);
+    filter: blur(120px);
+    z-index: 0;
+    animation: blobMove 12s ease-in-out infinite alternate;
+  }
+
+  @keyframes blobMove {
+    0% { transform: translate(0, 0); }
+    100% { transform: translate(100px, 80px); }
+  }
+
+  .hero-content {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-logo {
+    height: 110px;
+    width: 110px;
+    border-radius: 50%;
+    border: 3px solid #fff;
+    background: white;
+    object-fit: contain;
+    box-shadow: 0 0 25px rgba(0, 128, 128, 0.25);
+    animation: float 6s ease-in-out infinite;
+  }
+
+  @keyframes float {
+    0% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+    100% { transform: translateY(0); }
+  }
+
+  .text-yellow {
+    color: #FFD700;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+  }
+
+  .hero-section h1 {
+    color: #ffffff;
+    text-shadow: 2px 2px 6px rgba(0,0,0,0.4);
+    animation: fadeInDown 1.5s ease-in-out;
+  }
+
+  .hero-section p {
+    color: #f0f0f0;
+    font-size: 1.2rem;
+    font-weight: 500;
+    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.45);
+    max-width: 600px;
+    margin: 0 auto 1.5rem auto;
+    animation: fadeInUp 2s ease-in-out;
+  }
+
+  .custom-btn {
+    background-color: #008080;
+    border: none;
+    color: #fff;
+    font-weight: 600;
+    border-radius: 30px;
+    padding: 10px 30px;
+    transition: all 0.3s ease;
+    box-shadow: 0 5px 15px rgba(0, 128, 128, 0.4);
+    animation: fadeInUp 2.5s ease-in-out;
+  }
+
+  .custom-btn:hover {
+    background-color: #006666;
+    color: #FFD700;
+    transform: translateY(-2px) scale(1.03);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+  }
+
+  /* Animation keyframes */
+  @keyframes fadeInDown {
+    0% {
+      opacity: 0;
+      transform: translateY(-40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(40px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+</style>
+
+<section class="hero-section">
+  <div class="blur-blob"></div>
+
+  <div class="container">
+    <div class="hero-content">
+      <div class="logo-wrapper mb-4 animate__animated animate__zoomIn">
+        <img src="/images/logo.png" alt="E-MOtion Logo" class="hero-logo" />
+      </div>
+      <h1 class="display-4 fw-bold animate__animated animate__fadeInDown">
+        Welcome to <span class="text-yellow">E-MOtion</span>
+      </h1>
+      <p class="lead animate__animated animate__fadeInUp">
+        Revolutionizing mobility with smart, connected, and efficient services.
+      </p>
+      <a href="/orders" class="btn custom-btn">Get Started</a>
+    </div>
+  </div>
+</section>
+
 <%- include("../partials/footer.ejs") %>

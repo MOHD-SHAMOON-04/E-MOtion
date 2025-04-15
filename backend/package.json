@@ -7,13 +7,14 @@
   "type": "module",
   "main": "./src/app.js",
   "scripts": {
-    "dev": "node --watch app.js",
-    "start": "node app.js",
+    "dev": "node --watch ./src/app.js",
+    "start": "node ./src/app.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [],
   "dependencies": {
     "dotenv": "^16.5.0",
+    "ejs": "^3.1.10",
     "express": "^5.1.0",
     "pg": "^8.14.1"
   }
